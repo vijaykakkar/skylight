@@ -96,7 +96,7 @@ gitlab_smtp_enable: "false"
 ec2_region: "us-east-1"
 
 # If this is defined, create a dns entries in the route53 zone
-#public_dns_zone: "labs.ansibleworkshop.com"
+public_dns_zone: "redhatdemo.ca"
 
 # Internal lookup dict for image names and types
 ec2_image_names:
