@@ -65,7 +65,7 @@
   when: towerchk not in towerversion
 
 # ansible-tower-bundle version 3.6.0 >= once extacted removes the OS distribution, I have modofied the dest to follow the new extracted path.
-    dest: /tmp/ansible-tower-setup-bundle-{{ towerversion }}/inventory
+
 - name: template inventory file
   template:
     src: inventory
