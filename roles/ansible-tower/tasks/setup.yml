@@ -72,10 +72,18 @@
     dest: /tmp/ansible-tower-setup-bundle-{{ towerversion }}.el{{ ansible_distribution_major_version }}/inventory
   when: towerchk != towerversion
 
+- name: Create the environment file
+  copy:
+    dest: /tmp/ansible-tower-setup-{{ towerversion }}/install_vars.yml
+    content: |
+      redhat_aws_rhui_repos:
+        - rhel-server-rhui-rhscl-7-rpms
+        - rhel-7-server-rhui-extras-rpms
+
 # ansible-tower-bundle version 3.6.0 >= once extacted removes the OS distribution, I have modofied the shell to run the setup.sh on new path
 
 - name: run the tower installer
-  shell: ./setup.sh chdir=/tmp/ansible-tower-setup-bundle-{{ towerversion }}.el{{ ansible_distribution_major_version }}
+  shell: ./setup.sh -e "@install_vars.yml" chdir=/tmp/ansible-tower-setup-bundle-{{ towerversion }}.el{{ ansible_distribution_major_version }}
   when: towerchk not in towerversion
 
 - name: wait for tower to be up
